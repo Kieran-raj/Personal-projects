@@ -3,7 +3,7 @@ while True:
     words = ["python", "java", "kotlin", "javascript"]
     print("H A N G M A N")
     to_play = input("Type 'play' to play the game, 'exit' to quit:")
-    tries = 8
+    lives = 8
     ran_word = random.choice(words)
     display = "-"*(len(ran_word))
     dashes = display
@@ -11,7 +11,7 @@ while True:
     if to_play == "play":
         while True:
             ans = (''.join(display))
-            print("Lives: " + str(tries))
+            print("Lives: " + str(lives))
             if ans == ran_word:
                 print("You guessed the word " + ran_word + "!")
                 print("You survived!\n")
@@ -42,10 +42,10 @@ while True:
                         if letter not in not_in:
                             print("No such letter in the word")
                             not_in.append(letter)
-                            tries -= 1
+                            lives -= 1
                         else:
                             print("You already typed this letter")
-            if tries == 0:
+            if lives == 0:
                 print("You are hanged!\n")
                 break
     else:
