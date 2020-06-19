@@ -8,7 +8,6 @@ while True:
     lives = 8
     ran_word = random.choice(words)
     display = "-"*(len(ran_word))
-    dashes = display
     not_in = []
     if to_play == "play":
         while True:
