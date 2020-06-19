@@ -1,6 +1,8 @@
 import random
+with open('word_list.txt','r') as file:
+    data = file.read()
+    words = data.split()
 while True:
-    words = ["python", "java", "kotlin", "javascript"]
     print("H A N G M A N")
     to_play = input("Type 'play' to play the game, 'exit' to quit:")
     lives = 8
@@ -46,7 +48,8 @@ while True:
                         else:
                             print("You already typed this letter")
             if lives == 0:
-                print("You are hanged!\n")
+                print("You are hanged!")
+                print(f"The word was {ran_word}\n")
                 break
     else:
         break
