@@ -1,4 +1,15 @@
 import random
+
+
+def get_scoreboard():
+    with open('rating.txt', 'r') as scores:
+        current_score = "Current Scoreboard:"
+        print(current_score)
+        print(len(current_score)*"-")
+        for score in scores.readlines():
+            print(score.strip())
+
+
 name = input("Enter you name:")
 out_tofile = []
 d = {}
@@ -21,10 +32,12 @@ or press 'Enter' to play classic Rock, Paper, Scissors: """)
     while True:  # random items with unusual rules (normal rules not included)
         if mode == '':
             mode = 'rock,paper,scissors'
-        ans = input()
-        if ans == "!rating":
+        ans = input().lower()
+        if ans == "scoreboard":
+            get_scoreboard()
+        elif ans == "rating":
             print(f"Your rating: {score}")
-        elif ans == "!exit":
+        elif ans == "exit":
             file = open('rating.txt', 'w')
             file.writelines(out_tofile)
             file.close()
