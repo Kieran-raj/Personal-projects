@@ -1,7 +1,7 @@
 import random
 
 
-def get_scoreboard():
+def get_allscores():
     with open('rating.txt', 'r') as scores:
         current_score = "Current Scoreboard:"
         print(current_score)
@@ -20,21 +20,22 @@ for line in file:
     if not key == name:
         out_tofile.append(line)
 file.close()
-while True:  # number 1
+while True:
     print("Hello, " + name)
     if name in d:
         score = d[name]
     else:
         score = 0
     mode = input("""Input an odd number of unusual objects
-or press 'Enter' to play classic Rock, Paper, Scissors: """)
-    print("Okay, let's start")
-    while True:  # random items with unusual rules (normal rules not included)
+or press 'Enter' to play classic Rock, Paper, Scissors:\n """)
+    print("Okay, let's start!!\n")
+    while True:
         if mode == '':
             mode = 'rock,paper,scissors'
-        ans = input().lower()
-        if ans == "scoreboard":
-            get_scoreboard()
+        ans = input("""Make a guess to play or choose from the following:
+all scores, rating or exit.""").lower()
+        if ans == "all scores":
+            get_allscores()
         elif ans == "rating":
             print(f"Your rating: {score}")
         elif ans == "exit":
