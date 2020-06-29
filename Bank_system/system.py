@@ -153,14 +153,17 @@ def add_income(income, card_num, pin_num):
 
 def transfer(tranfer_to, card_num):
     amount = int(input('Enter how much you want to transfer:\n'))
-    current_balance = c.execute("SELECT balance FROM card WHERE number = ?", (card_num,))
-    if amount > current_balance.fetchone()[0]:
-        print('Insufficient funds!\n')
+    if amount < 0:
+        print('Invalid amount! Please try again\n')
     else:
-        c.execute("UPDATE card SET balance = balance + ? WHERE number = ?", (amount, tranfer_to))
-        c.execute("UPDATE card SET balance = balance - ? WHERE number = ?", (amount, card_num))
-        conn.commit()
-        print('Success!\n')
+        current_balance = c.execute("SELECT balance FROM card WHERE number = ?", (card_num,))
+        if amount > current_balance.fetchone()[0]:
+            print('Insufficient funds!\n')
+        else:
+            c.execute("UPDATE card SET balance = balance + ? WHERE number = ?", (amount, tranfer_to))
+            c.execute("UPDATE card SET balance = balance - ? WHERE number = ?", (amount, card_num))
+            conn.commit()
+            print('Success!\n')
 
 
 def close_account(card_num, pin_num):
