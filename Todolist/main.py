@@ -24,15 +24,36 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-# new_row = Table(task='This is a new string')
-# session.add(new_row)
-# session.commit()
+
+def menu():
+    options = input('1) Today\'s tasks\n2) Add task\n0) Exit\n')
+    if options == '1':
+        get_task()
+    elif options == '2':
+        add_task()
+    else:
+        print('\nBye!\n')
+        exit()
+
+
+def add_task():
+    new_task = input('Enter task\n')
+    new_entry = Table(task=new_task)
+    session.add(new_entry)
+    session.commit()
+    print('The task has been added!\n')
+    menu()
 
 
 def get_task():
     rows = session.query(Table).all()
-    for row in rows:
-         print(f'{row.id}. {row.task}')
+    if len(rows) > 0:
+        for row in rows:
+            print(f'\n{row.id}. {row.task}')
+            menu()
+    else:
+        print('\nToday:\nNothing to do!\n')
+        menu()
 
 
-get_task()
+menu()
