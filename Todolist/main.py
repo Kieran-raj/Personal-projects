@@ -145,7 +145,7 @@ def delete_list():
             i += 1
         delete_choice(rows)
     else:
-        print('No tasks to delete')
+        print('No tasks to delete\n')
         menu()
 
 
@@ -155,7 +155,7 @@ def delete_choice(rows):
     print(specific_row)
     session.delete(specific_row)
     session.commit()
-    print('The task has been deleted!')
+    print('The task has been deleted!\n')
     menu()
 
 
