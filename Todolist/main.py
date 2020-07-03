@@ -1,6 +1,3 @@
-# look at adding a start time and a finish time likely be just new columns, which would go into the class
-
-
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Date
