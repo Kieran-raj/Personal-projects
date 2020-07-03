@@ -170,6 +170,7 @@ def close_account(card_num, pin_num):
     c.execute("DELETE FROM card WHERE number = ? AND pin = ?", (card_num, pin_num))
     conn.commit()
     print('\n The account has been closed!\n')
+    menu_1()
 
 
 create_table()
