@@ -1,22 +1,4 @@
 from Users import *
-# while True:
-#     login = input('Sign up (u) or sign in?(i): ').lower()
-#     if login == 'i':
-#         user_name = user()
-#         user_entry(user_name)
-#         if session.query(Users).filter(Users.user_id == False).all():
-#             print('You are already logged in')
-#         else:
-#             session.query(Users).filter(Users.user_name == user_name).update({Users.logged_in: True})
-#             session.commit()
-#             print('Logged in')
-#         break
-#     elif login == 'u':
-#         user_name = new_user()
-#         break
-#     else:
-#         print('Invalid option')
-
 
 
 def get_user_id(user_name):
