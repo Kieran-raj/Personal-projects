@@ -8,11 +8,21 @@ def get_user_id(user_name):
 
 
 def start_up():
+    outof_date()
     rows_up = session.query(Table).filter(Table.done == 1).all()
     for row_up in rows_up:
         session.delete(row_up)
         session.commit()
     menu()
+
+
+def outof_date():
+    today = datetime.today().date()
+    past_week = today - timedelta(days=4)
+    rows_outof = session.query(Table).filter(Table.date < past_week).all()
+    for row_outof in rows_outof:
+        session.delete(row_outof)
+        session.commit()
 
 
 def menu():
@@ -100,15 +110,18 @@ def get_all():
     for row in rows:
         dates.append(row.date)
     i = 1
-    for n in list(dict.fromkeys(sorted(dates))):
-        new_rows = session.query(Table).filter(Table.user_id == user_id).filter(Table.date == n).all()
-        for row in new_rows:
-            row_month = month[row.date.month]
-            if row.done:
-                print(f'{i}. {row.task}. {row.date.day} {row_month} - Done')
-            else:
-                print(f'{i}. {row.task}. {row.date.day} {row_month} - Unfinished')
-            i += 1
+    if len(dates) > 0:
+        for n in list(dict.fromkeys(sorted(dates))):
+            new_rows = session.query(Table).filter(Table.user_id == user_id).filter(Table.date == n).all()
+            for row in new_rows:
+                row_month = month[row.date.month]
+                if row.done:
+                    print(f'{i}. {row.task}. {row.date.day} {row_month} - Done')
+                else:
+                    print(f'{i}. {row.task}. {row.date.day} {row_month} - Unfinished')
+                i += 1
+    else:
+        print('Nothing to do!')
     print('\n')
     option = input('1) Delete task\n2) Back\n')
     if option == '1':
