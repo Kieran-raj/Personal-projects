@@ -45,6 +45,7 @@ def take(stock):
     print(f"I gave you ${stock['money']}\n")
     stock['money'] = 0
 
+
 def coffee(type, stock):
     num_cups = 1
     vol_water = num_cups * type['water']

@@ -1,4 +1,4 @@
-from Todolist.Table_gen import *
+from Table_gen import *
 import random
 global user_name
 

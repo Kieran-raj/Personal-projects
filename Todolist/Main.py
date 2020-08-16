@@ -1,4 +1,13 @@
-from Todolist.Users import *
+##################################
+#Running instructions#
+#--------------------#
+#Download whole folder to local#
+#To run the script in CMD using following command:#
+# python -m Todolist.Main#
+
+
+from Users import *
+# if input isnt one of the options then need to re-offer
 
 
 def get_user_id(user_name):
@@ -211,6 +220,7 @@ def settings():
         exit()
 
 
-user_name = login()
-user_id = get_user_id(user_name)
-start_up()
+if __name__ == '__main__':
+    user_name = login()
+    user_id = get_user_id(user_name)
+    start_up()
