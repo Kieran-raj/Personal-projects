@@ -10,27 +10,28 @@ def user():
 
 
 def login():
-    global user_name
-    login = input('Sign up (u), sign in?(i) or exit: ').lower()
-    if login == 'i':
-        user_name = user()
-        if user_entry(user_name):
-            if session.query(Users).filter(Users.logged_in) == 1:
-                print('You are already logged in')
-                return user_name
-            else:
-                session.query(Users).filter(Users.user_name == user_name).update({Users.logged_in: 1})
-                session.commit()
-                print('Logged in')
-                return user_name
-    elif login == 'u':
-        user_name = new_user()
-        return user_name
-    elif login == 'exit':
-        exit()
-    else:
-        print('Invalid option')
-        return False
+    while True:
+        global user_name
+        login = input('Sign up (u), sign in?(i) or exit: ').lower()
+        if login == 'i':
+            user_name = user()
+            if user_entry(user_name):
+                if session.query(Users).filter(Users.logged_in) == 1:
+                    print('You are already logged in')
+                    return user_name
+                else:
+                    session.query(Users).filter(Users.user_name == user_name).update({Users.logged_in: 1})
+                    session.commit()
+                    print('Logged in')
+                    return user_name
+        elif login == 'u':
+            user_name = new_user()
+            return user_name
+        elif login == 'exit':
+            exit()
+        else:
+            print('Invalid option')
+    
 
 
 def user_entry(user_name):
