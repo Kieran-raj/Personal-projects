@@ -100,6 +100,5 @@ def log_out(user_id):
     session.query(Users).filter(Users.user_id == user_id).update({Users.logged_in: 0})
     session.commit()
     print('You\'ve logged out!\n')
-    login()
 
 

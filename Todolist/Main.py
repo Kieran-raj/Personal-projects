@@ -220,6 +220,7 @@ def settings():
 
 
 if __name__ == '__main__':
-    user_name = login()
-    user_id = get_user_id(user_name)
-    start_up()
+    while True:
+        user_name = login()
+        user_id = get_user_id(user_name)
+        start_up()
