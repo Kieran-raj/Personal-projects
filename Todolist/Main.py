@@ -1,12 +1,4 @@
-##################################
-#Running instructions#
-#--------------------#
-#Download whole folder to local#
-#To run the script in CMD using following command:#
-# python -m Todolist.Main#
-
 from Users import *
-# if input isnt one of the options then need to re-offer
 
 
 def get_user_id(user_name):
