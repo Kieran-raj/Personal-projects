@@ -54,9 +54,13 @@ l) Log out
 
 def add_task():
     new_task = input('Enter task\n')
-    new_deadline = input('Enter deadline (YYYY-MM-DD or "today")\n').lower()
+    new_deadline = input('Enter deadline (YYYY-MM-DD or "today", or "tomorrow")\n').lower()
+    tomorrow = datetime.today().date() + timedelta(days=1)
     if new_deadline != 'today':
-        new_entry = Table(user_id=user_id, task=new_task, date=datetime.strptime(new_deadline, '%Y-%m-%d').date())
+        if new_deadline != 'tomorrow':
+            new_entry = Table(user_id=user_id, task=new_task, date=datetime.strptime(new_deadline, '%Y-%m-%d').date())
+        else:
+            new_entry = Table(user_id=user_id, task=new_task, date=tomorrow)
     else:
         new_entry = Table(user_id=user_id, task=new_task)
     session.add(new_entry)
