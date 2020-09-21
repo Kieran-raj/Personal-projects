@@ -14,15 +14,15 @@ def login():
     login = input('Sign up (u), sign in?(i) or exit: ').lower()
     if login == 'i':
         user_name = user()
-        user_entry(user_name)
-        if session.query(Users).filter(Users.logged_in):
-            print('You are already logged in')
-            return user_name
-        else:
-            session.query(Users).filter(Users.user_name == user_name).update({Users.logged_in: True})
-            session.commit()
-            print('Logged in')
-            return user_name
+        if user_entry(user_name):
+            if session.query(Users).filter(Users.logged_in) == 1:
+                print('You are already logged in')
+                return user_name
+            else:
+                session.query(Users).filter(Users.user_name == user_name).update({Users.logged_in: 1})
+                session.commit()
+                print('Logged in')
+                return user_name
     elif login == 'u':
         user_name = new_user()
         return user_name
@@ -33,7 +33,6 @@ def login():
         return False
 
 
-
 def user_entry(user_name):
     if session.query(Users).filter(Users.user_name == user_name).all():
         return True
@@ -42,7 +41,7 @@ def user_entry(user_name):
         if input('Would you like you to make a new account? (Y/N): ').lower() == 'y':
             length = random.randrange(1, len(user_name))
             user_id = ''.join(random.choices(user_name, k=length)) + str(random.randrange(10))
-            new_entry = Users(user_name=user_name, user_id=user_id)
+            new_entry = Users(user_name=user_name, user_id=user_id, logged_in=1)
             session.add(new_entry)
             session.commit()
             print('New user account made')
@@ -98,7 +97,7 @@ def update_user(user_id):
 
 
 def log_out(user_id):
-    session.query(Users).filter(Users.user_id == user_id).update({Users.logged_in: False})
+    session.query(Users).filter(Users.user_id == user_id).update({Users.logged_in: 0})
     session.commit()
     print('You\'ve logged out!\n')
     login()

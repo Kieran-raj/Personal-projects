@@ -27,7 +27,7 @@ class Users(Base):
     id = Column(Integer, primary_key=True)
     user_name = Column(VARCHAR)
     user_id = Column(Integer)
-    logged_in = Column(Boolean)
+    logged_in = Column(Integer)
 
     def __repr__(self):
         return self.user_name
