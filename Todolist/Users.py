@@ -30,6 +30,8 @@ def login():
         exit()
     else:
         print('Invalid option')
+        return False
+
 
 
 def user_entry(user_name):
