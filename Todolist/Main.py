@@ -128,17 +128,20 @@ def get_all():
     else:
         print('Nothing to do!')
     print('\n')
-    option = input('1) Delete task\n2) Completed\n3) Back\n')
+    option = input('1) Delete task\n2) Mark as complete\n3) Back\n')
     if option == '1':
         delete_list(rows)
     elif option == '2':
         if len(rows) > 0:
             done(rows)
         else:
-            print('No tasks to mark as complete')
+            print('No tasks to mark as complete!')
             menu()
     elif option == '3':
         menu()
+    else:
+        print('Invalid option')
+        get_all()
 
 
 def get_missed():
