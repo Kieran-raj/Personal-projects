@@ -1,7 +1,5 @@
 from Users import *
 
-## fix issue when not inputting correcting values in all tasks
-
 def get_user_id(user_name):
     rows = session.query(Users).filter(Users.user_name == user_name).all()
     for row in rows:
