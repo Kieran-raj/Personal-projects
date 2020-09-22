@@ -1,5 +1,8 @@
 from Users import *
 
+## fix issue when not inputting correcting values in all tasks
+## fix whem logged in as someone else it should say nothing to do
+
 
 def get_user_id(user_name):
     rows = session.query(Users).filter(Users.user_name == user_name).all()
@@ -110,7 +113,7 @@ month = {1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "May", 6: "Jun",
 def get_all():
     dates = []
     print('\nAll tasks:')
-    rows = session.query(Table).all()
+    rows = session.query(Table).filter(Table.user_id == user_id).all()
     for row in rows:
         dates.append(row.date)
     i = 1
@@ -131,6 +134,7 @@ def get_all():
     if option == '1':
         delete_list(rows)
     elif option == '2':
+        print(rows)
         done(rows)
     elif option == '3':
         menu()
