@@ -1,8 +1,6 @@
 from Users import *
 
 ## fix issue when not inputting correcting values in all tasks
-## fix whem logged in as someone else it should say nothing to do
-
 
 def get_user_id(user_name):
     rows = session.query(Users).filter(Users.user_name == user_name).all()
@@ -134,8 +132,11 @@ def get_all():
     if option == '1':
         delete_list(rows)
     elif option == '2':
-        print(rows)
-        done(rows)
+        if len(rows) > 0:
+            done(rows)
+        else:
+            print('No tasks to mark as complete')
+            menu()
     elif option == '3':
         menu()
 
