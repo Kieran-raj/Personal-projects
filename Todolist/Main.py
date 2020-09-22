@@ -127,10 +127,12 @@ def get_all():
     else:
         print('Nothing to do!')
     print('\n')
-    option = input('1) Delete task\n2) Back\n')
+    option = input('1) Delete task\n2) Completed\n3) Back\n')
     if option == '1':
         delete_list(rows)
     elif option == '2':
+        done(rows)
+    elif option == '3':
         menu()
 
 
