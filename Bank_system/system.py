@@ -1,8 +1,9 @@
 import random
 import sqlite3
+
+
 conn = sqlite3.connect('card.s3db')
 c = conn.cursor()
-
 
 def create_table():
     c.execute("""CREATE TABLE IF NOT EXISTS card(
