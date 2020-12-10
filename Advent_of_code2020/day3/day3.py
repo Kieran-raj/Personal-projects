@@ -1,3 +1,5 @@
+### Needed a little help with part 2 unfortunately :(((( ###
+
 import os
 
 with open('input.txt' , 'r') as f:
@@ -23,26 +25,23 @@ def get_ans(r, d):
     ans = []
     input3(r)
     start_position = 0
+    down_position = 0
     num_open = 0
     num_trees = 0
     lines2 = read_input()
-    if start_position == 0:
-        num = 0
-    else:
-        num = d
-    for i in range(len(lines2)):
-        random = i + num
-        if random < len(lines2):
-            if lines2[random][start_position] == '.':
-                num_open += 1
-                start_position += r
-            else:
-                num_trees += 1
-                start_position += r
+    while down_position < len(lines2):
+        if lines2[down_position][start_position] == '.':
+            num_open += 1
+            start_position += r
+            down_position += d
+        else:
+            num_trees += 1
+            start_position += r
+            down_position += d
     return num_trees
 
-print(get_ans(1, 1) * get_ans(3, 1) * get_ans(5, 1) * get_ans(7, 1) * get_ans(1, 2))
 
+print(get_ans(1, 1) * get_ans(3, 1) * get_ans(5, 1) * get_ans(7, 1) * get_ans(1, 2))
 
 
 
