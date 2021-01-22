@@ -173,9 +173,9 @@ def close_account(card_num, pin_num):
     print('\n The account has been closed!\n')
     menu_1()
 
-
-create_table()
-menu_1()
-c.close()
-conn.close()
+if __name__ == "__main__":
+    create_table()
+    menu_1()
+    c.close()
+    conn.close()
 
